@@ -1,0 +1,20 @@
+# Environment variables
+.env
+*.key
+credentials.*
+
+# OS files
+.DS_Store
+Icon\r
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+*~
+
+# Hermes Agent local settings (contains sensitive tokens)
+.hermes/
