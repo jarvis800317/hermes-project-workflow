@@ -1,7 +1,7 @@
 # Hermes Agent 專案工作流程設定（Mac mini + Hermes Agent 環境）
 
-> 版本：v1.0
-> 更新日期：2026-05-15
+> 版本：v1.1
+> 更新日期：2026-05-16
 > 適用環境：macOS + Hermes Agent + Google Drive
 
 ---
@@ -13,19 +13,20 @@
 **核心價值**：
 - 節省 context tokens（不用每次重新交代背景）
 - 結構化記錄進度，防止遺漏
-- 三方自動同步（GDrive + GitHub + Obsidian）
+- **四**方自動同步（GDrive + GitHub + Obsidian + **Firebase**）
 
 ---
 
 ## 工作架構
 
-### 三個家
+### 四個家
 
 | 平台 | 路徑 | 用途 |
 |------|------|------|
 | 📋 GDrive | `~/我的雲端硬碟/Jarvis專案/` | 工作桌，自動跨設備同步 |
 | 🐙 GitHub | `jarvis800317/Jarvis專案` | 程式碼的家，備份 + 公開 |
 | 📘 Obsidian | `~/我的雲端硬碟/2ndBrain/工作日誌/` | 工作室，進度日誌 |
+| 🔥 Firebase | `專案內 firebase.json` | 視覺化即時展示（進度追蹤），僅專案有 Firebase 元件時觸發 |
 
 ### 資料夾結構
 
@@ -76,11 +77,13 @@ Jarvis專案/
    - 「最近更動紀錄」表格（✅✅✅）
    - 「踩坑筆記」（若有新坑）
 3. Git commit + push 到 GitHub
+4. 若專案含有 `firebase.json` → 部署 Firebase Hosting + Realtime Database
 
 **不會做的事**：
 - 對「純問問題」執行同步
 - commit `.claude/`、`node_modules/`、`.env`
 - 寫「更新」、「修改」等無意義 commit message
+- Firebase 同步：僅在 `firebase.json` 存在時執行（專案無 Firebase 元件則跳過）
 
 **輸出**：
 ```
@@ -89,6 +92,7 @@ Jarvis專案/
 | GDrive | 自動同步 | ✅ |
 | Obsidian | 工作日誌更新 | ✅ |
 | GitHub | commit + push | ✅ |
+| Firebase | 部署（僅有 firebase.json） | ✅ |
 ```
 
 ---
@@ -161,6 +165,7 @@ Jarvis專案/
 | GDrive | 自動同步 | ✅ |
 | Obsidian | 工作日誌已更新 | ✅ |
 | GitHub | 已 commit + push | ✅ |
+| Firebase | 已部署（專案含 firebase.json） | ✅ |
 ```
 
 ### 情境三：隔天繼續
@@ -216,6 +221,7 @@ Jarvis專案/
 
 | 日期 | 版本 | 更新內容 |
 |------|------|----------|
+| 2026-05-16 | v1.1 | 加入 Firebase 為第四個同步目標（條件觸發：僅在專案含 firebase.json 時執行） |
 | 2026-05-15 | v1.0 | 初版建立（對應 Hermes Agent Mac mini 環境）|
 
 ---
